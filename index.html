@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Resume Maker - Build Your Resume Instantly</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1><i class="fas fa-file-alt"></i> Free Resume Maker</h1>
+            <p>Build professional resumes instantly - 100% Free</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2><i class="fas fa-edit"></i> Enter Your Details</h2>
+                
+                <!-- Template Selector -->
+                <div class="template-selector">
+                    <label>Choose Template:</label>
+                    <select id="templateSelect">
+                        <option value="modern">Modern Blue</option>
+                        <option value="classic">Classic</option>
+                        <option value="creative">Creative</option>
+                        <option value="minimal">Minimal</option>
+                    </select>
+                </div>
+
+                <form id="resumeForm">
+                    <!-- Personal Info -->
+                    <div class="section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <input type="text" id="name" placeholder="Full Name" required>
+                        <input type="text" id="title" placeholder="Professional Title">
+                        <input type="email" id="email" placeholder="Email">
+                        <input type="tel" id="phone" placeholder="Phone">
+                        <input type="text" id="location" placeholder="Location">
+                        <input type="text" id="linkedin" placeholder="LinkedIn URL">
+                        <input type="file" id="photo" accept="image/*">
+                    </div>
+
+                    <!-- Objective -->
+                    <div class="section">
+                        <h3><i class="fas fa-bullseye"></i> Professional Summary</h3>
+                        <textarea id="objective" rows="4" placeholder="Write a brief summary about your experience and career goals..."></textarea>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="section">
+                        <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+                        <div id="experienceEntries">
+                            <div class="entry">
+                                <input type="text" class="job-title" placeholder="Job Title">
+                                <input type="text" class="company" placeholder="Company">
+                                <input type="text" class="dates" placeholder="Dates (2020 - Present)">
+                                <textarea class="description" rows="2" placeholder="Job responsibilities and achievements..."></textarea>
+                            </div>
+                        </div>
+                        <button type="button" id="addExperience" class="add-btn"><i class="fas fa-plus"></i> Add Job</button>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="section">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div id="educationEntries">
+                            <div class="entry">
+                                <input type="text" class="degree" placeholder="Degree">
+                                <input type="text" class="school" placeholder="School/University">
+                                <input type="text" class="edu-dates" placeholder="Year of Graduation">
+                            </div>
+                        </div>
+                        <button type="button" id="addEducation" class="add-btn"><i class="fas fa-plus"></i> Add Education</button>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="section">
+                        <h3><i class="fas fa-tools"></i> Skills</h3>
+                        <input type="text" id="skills" placeholder="HTML, CSS, JavaScript, React, Node.js...">
+                    </div>
+                </form>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <h2><i class="fas fa-eye"></i> Live Preview</h2>
+                <div id="resumePreview" class="resume-preview"></div>
+                <div class="preview-actions">
+                    <button id="generateBtn" class="generate-btn">
+                        <i class="fas fa-magic"></i> Generate Resume
+                    </button>
+                    <button id="downloadBtn" class="download-btn" style="display:none;">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                    <button id="clearBtn" class="clear-btn">
+                        <i class="fas fa-trash"></i> Clear All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
