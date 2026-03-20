@@ -1,110 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Resume Maker - Build Your Resume Instantly</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Forge — Build Your Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1><i class="fas fa-file-alt"></i> Free Resume Maker</h1>
-            <p>Build professional resumes instantly - 100% Free</p>
-        </header>
 
-        <div class="main-grid">
-            <!-- Form Section -->
-            <div class="form-section">
-                <h2><i class="fas fa-edit"></i> Enter Your Details</h2>
-                
-                <!-- Template Selector -->
-                <div class="template-selector">
-                    <label>Choose Template:</label>
-                    <select id="templateSelect">
-                        <option value="modern">Modern Blue</option>
-                        <option value="classic">Classic</option>
-                        <option value="creative">Creative</option>
-                        <option value="minimal">Minimal</option>
-                    </select>
-                </div>
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="logo">
+    <div class="logo-icon">⚡</div>
+    Resume&nbsp;<span style="font-weight:300;opacity:.7">Forge</span>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn" id="clearBtn"><i class="fas fa-rotate-left"></i> Reset</button>
+    <button class="nav-btn success" id="downloadBtn"><i class="fas fa-download"></i> Download PDF</button>
+  </div>
+</nav>
 
-                <form id="resumeForm">
-                    <!-- Personal Info -->
-                    <div class="section">
-                        <h3><i class="fas fa-user"></i> Personal Information</h3>
-                        <input type="text" id="name" placeholder="Full Name" required>
-                        <input type="text" id="title" placeholder="Professional Title">
-                        <input type="email" id="email" placeholder="Email">
-                        <input type="tel" id="phone" placeholder="Phone">
-                        <input type="text" id="location" placeholder="Location">
-                        <input type="text" id="linkedin" placeholder="LinkedIn URL">
-                        <input type="file" id="photo" accept="image/*">
-                    </div>
+<!-- APP -->
+<div class="app">
 
-                    <!-- Objective -->
-                    <div class="section">
-                        <h3><i class="fas fa-bullseye"></i> Professional Summary</h3>
-                        <textarea id="objective" rows="4" placeholder="Write a brief summary about your experience and career goals..."></textarea>
-                    </div>
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
 
-                    <!-- Experience -->
-                    <div class="section">
-                        <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
-                        <div id="experienceEntries">
-                            <div class="entry">
-                                <input type="text" class="job-title" placeholder="Job Title">
-                                <input type="text" class="company" placeholder="Company">
-                                <input type="text" class="dates" placeholder="Dates (2020 - Present)">
-                                <textarea class="description" rows="2" placeholder="Job responsibilities and achievements..."></textarea>
-                            </div>
-                        </div>
-                        <button type="button" id="addExperience" class="add-btn"><i class="fas fa-plus"></i> Add Job</button>
-                    </div>
-
-                    <!-- Education -->
-                    <div class="section">
-                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
-                        <div id="educationEntries">
-                            <div class="entry">
-                                <input type="text" class="degree" placeholder="Degree">
-                                <input type="text" class="school" placeholder="School/University">
-                                <input type="text" class="edu-dates" placeholder="Year of Graduation">
-                            </div>
-                        </div>
-                        <button type="button" id="addEducation" class="add-btn"><i class="fas fa-plus"></i> Add Education</button>
-                    </div>
-
-                    <!-- Skills -->
-                    <div class="section">
-                        <h3><i class="fas fa-tools"></i> Skills</h3>
-                        <input type="text" id="skills" placeholder="HTML, CSS, JavaScript, React, Node.js...">
-                    </div>
-                </form>
-            </div>
-
-            <!-- Preview Section -->
-            <div class="preview-section">
-                <h2><i class="fas fa-eye"></i> Live Preview</h2>
-                <div id="resumePreview" class="resume-preview"></div>
-                <div class="preview-actions">
-                    <button id="generateBtn" class="generate-btn">
-                        <i class="fas fa-magic"></i> Generate Resume
-                    </button>
-                    <button id="downloadBtn" class="download-btn" style="display:none;">
-                        <i class="fas fa-download"></i> Download PDF
-                    </button>
-                    <button id="clearBtn" class="clear-btn">
-                        <i class="fas fa-trash"></i> Clear All
-                    </button>
-                </div>
-            </div>
-        </div>
+    <!-- Template Selector -->
+    <div class="tpl-bar">
+      <div class="tpl-label">Choose Template</div>
+      <div class="tpl-grid">
+        <div class="tpl-card active" data-tpl="exec"><div class="dot d-exec">E</div><span>Executive</span></div>
+        <div class="tpl-card" data-tpl="modern"><div class="dot d-modern">M</div><span>Modern</span></div>
+        <div class="tpl-card" data-tpl="minimal"><div class="dot d-minimal">—</div><span>Minimal</span></div>
+        <div class="tpl-card" data-tpl="creative"><div class="dot d-creative">✦</div><span>Creative</span></div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Progress -->
+    <div class="form-progress">
+      <div class="progress-label"><span>Profile Completion</span><span id="progressPct">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="form-body">
+
+      <!-- Personal Info -->
+      <div class="acc-section open" id="sec-personal">
+        <div class="acc-header" onclick="toggleSection('personal')">
+          <div class="acc-icon" style="background:rgba(79,156,249,.15);color:var(--acc)"><i class="fas fa-user"></i></div>
+          <span class="acc-title">Personal Info</span>
+          <i class="fas fa-chevron-down acc-arrow"></i>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <div class="photo-zone" id="photoZone">
+              <input type="file" id="photoInput" accept="image/*">
+              <img id="photoPreviewImg" class="pz-preview" src="" alt="">
+              <i class="fas fa-camera" style="color:var(--sm);font-size:1.2rem;margin-bottom:6px;display:block"></i>
+              <p>Click to upload photo</p>
+            </div>
+            <div style="margin-top:12px"></div>
+            <div class="field-row">
+              <div class="field"><label>Full Name</label><input type="text" id="f-name" placeholder="Jane Doe" oninput="liveRender()"></div>
+              <div class="field"><label>Job Title</label><input type="text" id="f-title" placeholder="UX Designer" oninput="liveRender()"></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="jane@email.com" oninput="liveRender()"></div>
+              <div class="field"><label>Phone</label><input type="tel" id="f-phone" placeholder="+1 234 567" oninput="liveRender()"></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Location</label><input type="text" id="f-location" placeholder="New York, NY" oninput="liveRender()"></div>
+              <div class="field"><label>Website / LinkedIn</label><input type="text" id="f-linkedin" placeholder="linkedin.com/in/jane" oninput="liveRender()"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="acc-section open" id="sec-summary">
+        <div class="acc-header" onclick="toggleSection('summary')">
+          <div class="acc-icon" style="background:rgba(168,85,247,.15);color:#a855f7"><i class="fas fa-align-left"></i></div>
+          <span class="acc-title">Professional Summary</span>
+          <i class="fas fa-chevron-down acc-arrow"></i>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <div class="field"><textarea id="f-summary" placeholder="A brief, compelling summary of your career, expertise and what you bring to the table…" oninput="liveRender()"></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="acc-section open" id="sec-experience">
+        <div class="acc-header" onclick="toggleSection('experience')">
+          <div class="acc-icon" style="background:rgba(34,197,94,.15);color:#22c55e"><i class="fas fa-briefcase"></i></div>
+          <span class="acc-title">Work Experience</span>
+          <i class="fas fa-chevron-down acc-arrow"></i>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <div id="exp-entries"></div>
+            <button class="add-entry-btn" onclick="addEntry('exp')"><i class="fas fa-plus"></i> Add Experience</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="acc-section open" id="sec-education">
+        <div class="acc-header" onclick="toggleSection('education')">
+          <div class="acc-icon" style="background:rgba(251,146,60,.15);color:#fb923c"><i class="fas fa-graduation-cap"></i></div>
+          <span class="acc-title">Education</span>
+          <i class="fas fa-chevron-down acc-arrow"></i>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <div id="edu-entries"></div>
+            <button class="add-entry-btn" onclick="addEntry('edu')"><i class="fas fa-plus"></i> Add Education</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="acc-section open" id="sec-skills">
+        <div class="acc-header" onclick="toggleSection('skills')">
+          <div class="acc-icon" style="background:rgba(236,72,153,.15);color:#ec4899"><i class="fas fa-bolt"></i></div>
+          <span class="acc-title">Skills</span>
+          <i class="fas fa-chevron-down acc-arrow"></i>
+        </div>
+        <div class="acc-content">
+          <div class="acc-inner">
+            <div class="field"><label>Type a skill and press Enter or comma</label></div>
+            <div class="tags-container" id="skillTags" onclick="document.getElementById('skillInput').focus()">
+              <input type="text" id="skillInput" class="tag-input" placeholder="e.g. JavaScript">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end form-body -->
+  </aside>
+
+  <!-- ── CANVAS ── -->
+  <main class="canvas">
+    <div class="resume-sheet" id="resumeSheet">
+      <div class="empty-state" id="emptyState">
+        <i class="fas fa-file-alt"></i>
+        <h3>Your resume appears here</h3>
+        <p>Start filling in your details on the left — it updates live as you type.</p>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
