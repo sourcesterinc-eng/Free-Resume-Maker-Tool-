@@ -1,0 +1,19 @@
+{
+  "name": "free-resume-maker-tool",
+  "version": "1.0.0",
+  "description": "Free Resume Maker Tool - Build Your Resume",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "resume",
+    "resume-builder",
+    "resume-maker"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.1.1"
+  }
+}
